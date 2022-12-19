@@ -23,5 +23,15 @@ namespace SeBookWeb.Controllers
         {
             return View();
         }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken] //https://www.devcurry.com/2013/01/what-is-antiforgerytoken-and-why-do-i.html
+        public IActionResult Create(Category obj)
+        {
+            _db.Categories.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

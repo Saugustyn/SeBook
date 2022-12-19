@@ -29,6 +29,10 @@ namespace SeBookWeb.Controllers
         [ValidateAntiForgeryToken] //https://www.devcurry.com/2013/01/what-is-antiforgerytoken-and-why-do-i.html
         public IActionResult Create(Category obj)
         {
+            if(obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("TempCustomValidation", "The DisplayOrder cannot exactly match the Name");
+            }
             if (ModelState.IsValid)
             {
                 _db.Categories.Add(obj);

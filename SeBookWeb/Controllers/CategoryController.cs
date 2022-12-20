@@ -79,5 +79,35 @@ namespace SeBookWeb.Controllers
             return View(obj);
 
         }
+
+        //GET
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var category = _db.Categories.Find(id);
+            //var categoryFirst = _db.Categories.FirstOrDefault(u=>u.Id == id); // if many records: returns the first record
+            //var categorySingle = _db.Categories.SingleOrDefault(u => u.Id == id); //if many records: throws an exception
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken] //https://www.devcurry.com/2013/01/what-is-antiforgerytoken-and-why-do-i.html
+        public IActionResult Delete(Category obj)
+        {
+            _db.Categories.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+            return View(obj);
+
+        }
     }
 }

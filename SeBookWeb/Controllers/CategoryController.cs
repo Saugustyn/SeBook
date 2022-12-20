@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SeBookWeb.Data;
-using SeBookWeb.Models;
+using SeBook.DataAccess;
+using SeBook.Models;
 
 namespace SeBookWeb.Controllers
 {

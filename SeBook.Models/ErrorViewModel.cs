@@ -1,4 +1,4 @@
-namespace SeBookWeb.Models
+namespace SeBook.Models
 {
     public class ErrorViewModel
     {

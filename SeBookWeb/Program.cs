@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SeBookWeb.Data;
+using SeBook.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 

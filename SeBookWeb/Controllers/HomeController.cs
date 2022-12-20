@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SeBookWeb.Models;
+using SeBook.Models;
 using System.Diagnostics;
 
 namespace SeBookWeb.Controllers

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SeBookWeb.Models;
+using SeBook.Models;
 
-namespace SeBookWeb.Data
+namespace SeBook.DataAccess
 {
     public class AppDbContext : DbContext
     {

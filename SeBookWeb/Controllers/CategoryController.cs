@@ -51,15 +51,15 @@ namespace SeBookWeb.Controllers
             {
                 return NotFound();
             }
-            var category = _db.Categories.Find(id);
-            //var categoryFirst = _db.Categories.FirstOrDefault(u=>u.Id == id); // if many records: returns the first record
+            //var category = _db.Categories.Find(id);
+            var categoryFirst = _db.Categories.FirstOrDefault(u=>u.Name == "id"); // if many records: returns the first record
             //var categorySingle = _db.Categories.SingleOrDefault(u => u.Id == id); //if many records: throws an exception
 
-            if(category == null)
+            if(categoryFirst == null)
             {
                 return NotFound();
             }
-            return View(category);
+            return View(categoryFirst);
         }
 
         //POST

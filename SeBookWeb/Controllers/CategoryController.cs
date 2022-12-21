@@ -7,15 +7,15 @@ namespace SeBookWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _db;
-        public CategoryController(ICategoryRepository db)
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Category> objCategoryList = _db.GetAll();
+            IEnumerable<Category> objCategoryList = _unitOfWork.Category.GetAll();
             return View(objCategoryList);
         }
 
@@ -30,14 +30,14 @@ namespace SeBookWeb.Controllers
         [ValidateAntiForgeryToken] //https://www.devcurry.com/2013/01/what-is-antiforgerytoken-and-why-do-i.html
         public IActionResult Create(Category obj)
         {
-            if(obj.Name == obj.DisplayOrder.ToString())
+            if(obj.Name ==  obj.DisplayOrder.ToString())
             {
                 ModelState.AddModelError("TempCustomValidation", "The DisplayOrder cannot exactly match the Name");
             }
             if (ModelState.IsValid)
             {
-                _db.Add(obj);
-                _db.Save();
+                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
@@ -53,7 +53,7 @@ namespace SeBookWeb.Controllers
                 return NotFound();
             }
             //var category = _db.Categories.Find(id);
-            var categoryFirst = _db.GetFirstOrDefault(u=>u.Name == "id"); // if many records: returns the first record
+            var categoryFirst = _unitOfWork.Category.GetFirstOrDefault(u=>u.Id == id); // if many records: returns the first record
             //var categorySingle = _db.Categories.SingleOrDefault(u => u.Id == id); //if many records: throws an exception
 
             if(categoryFirst == null)
@@ -74,8 +74,8 @@ namespace SeBookWeb.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Update(obj);
-                _db.Save();
+                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
@@ -91,7 +91,7 @@ namespace SeBookWeb.Controllers
                 return NotFound();
             }
             //var category = _db.Find(id);
-            var categoryFirst = _db.GetFirstOrDefault(u=>u.Id == id); // if many records: returns the first record
+            var categoryFirst = _unitOfWork.Category.GetFirstOrDefault(u=>u.Id == id); // if many records: returns the first record
             //var categorySingle = _db.Categories.SingleOrDefault(u => u.Id == id); //if many records: throws an exception
 
             if (categoryFirst == null)
@@ -106,8 +106,8 @@ namespace SeBookWeb.Controllers
         [ValidateAntiForgeryToken] //https://www.devcurry.com/2013/01/what-is-antiforgerytoken-and-why-do-i.html
         public IActionResult Delete(Category obj)
         {
-            _db.Remove(obj);
-            _db.Save();
+            _unitOfWork.Category.Remove(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }

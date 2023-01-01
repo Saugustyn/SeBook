@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SeBook.Models;
 
-namespace SeBook.DataAccess
+namespace SeBook.DataAccess.Data
 {
     public class AppDbContext : DbContext
     {
@@ -11,5 +11,6 @@ namespace SeBook.DataAccess
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<CoverType> CoverTypes { get; set; }
     }
 }

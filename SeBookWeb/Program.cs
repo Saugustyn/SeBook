@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SeBook.DataAccess;
+using SeBook.DataAccess.Data;
 using SeBook.DataAccess.Repository;
 using SeBook.DataAccess.Repository.IRepository;
 

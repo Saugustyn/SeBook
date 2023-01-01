@@ -3,8 +3,9 @@ using SeBook.DataAccess;
 using SeBook.DataAccess.Repository.IRepository;
 using SeBook.Models;
 
-namespace SeBookWeb.Controllers
+namespace SeBookWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -30,7 +31,7 @@ namespace SeBookWeb.Controllers
         [ValidateAntiForgeryToken] //https://www.devcurry.com/2013/01/what-is-antiforgerytoken-and-why-do-i.html
         public IActionResult Create(Category obj)
         {
-            if(obj.Name ==  obj.DisplayOrder.ToString())
+            if (obj.Name == obj.DisplayOrder.ToString())
             {
                 ModelState.AddModelError("TempCustomValidation", "The DisplayOrder cannot exactly match the Name");
             }
@@ -42,21 +43,21 @@ namespace SeBookWeb.Controllers
                 return RedirectToAction("Index");
             }
             return View(obj);
-            
+
         }
 
         //GET
         public IActionResult Edit(int? id)
         {
-            if(id == null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
             //var category = _db.Categories.Find(id);
-            var categoryFirst = _unitOfWork.Category.GetFirstOrDefault(u=>u.Id == id); // if many records: returns the first record
+            var categoryFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id); // if many records: returns the first record
             //var categorySingle = _db.Categories.SingleOrDefault(u => u.Id == id); //if many records: throws an exception
 
-            if(categoryFirst == null)
+            if (categoryFirst == null)
             {
                 return NotFound();
             }
@@ -91,7 +92,7 @@ namespace SeBookWeb.Controllers
                 return NotFound();
             }
             //var category = _db.Find(id);
-            var categoryFirst = _unitOfWork.Category.GetFirstOrDefault(u=>u.Id == id); // if many records: returns the first record
+            var categoryFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id); // if many records: returns the first record
             //var categorySingle = _db.Categories.SingleOrDefault(u => u.Id == id); //if many records: throws an exception
 
             if (categoryFirst == null)

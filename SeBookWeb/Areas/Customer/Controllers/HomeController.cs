@@ -2,8 +2,9 @@
 using SeBook.Models;
 using System.Diagnostics;
 
-namespace SeBookWeb.Controllers
+namespace SeBookWeb.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace SeBook.DataAccess.Repository
 {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository
+    public class CoverTypeRepository : Repository<CoverType>, ICoverTypeRepository
     {
         private readonly AppDbContext _db;
-        public CategoryRepository(AppDbContext db) : base(db)
+        public CoverTypeRepository(AppDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(Category obj)
+        public void Update(CoverType obj)
         {
-            _db.Categories.Update(obj);
+            _db.CoverTypes.Update(obj);
         }
     }
 }

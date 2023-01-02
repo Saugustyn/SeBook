@@ -21,49 +21,25 @@ namespace SeBookWeb.Areas.Admin.Controllers
         }
 
         //GET
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
+            Product product = new Product();
+            if (id == null || id == 0)
+            {
+                return View(product);
+            }
+            else
+            {
+
+            }
+
             return View();
         }
 
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken] //https://www.devcurry.com/2013/01/what-is-antiforgerytoken-and-why-do-i.html
-        public IActionResult Create(CoverType obj)
-        {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.CoverType.Add(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "CoverType created successfully";
-                return RedirectToAction("Index");
-            }
-            return View(obj);
-
-        }
-
-        //GET
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            //var category = _db.Categories.Find(id);
-            var coverTypeFirst = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id); // if many records: returns the first record
-            //var categorySingle = _db.Categories.SingleOrDefault(u => u.Id == id); //if many records: throws an exception
-
-            if (coverTypeFirst == null)
-            {
-                return NotFound();
-            }
-            return View(coverTypeFirst);
-        }
-
-        //POST
-        [HttpPost]
-        [ValidateAntiForgeryToken] //https://www.devcurry.com/2013/01/what-is-antiforgerytoken-and-why-do-i.html
-        public IActionResult Edit(CoverType obj)
+        public IActionResult Upsert(CoverType obj)
         {
             if (ModelState.IsValid)
             {

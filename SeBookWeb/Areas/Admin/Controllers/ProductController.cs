@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using SeBook.DataAccess;
 using SeBook.DataAccess.Repository.IRepository;
 using SeBook.Models;
+using SeBook.Models.ViewModels;
 
 namespace SeBookWeb.Areas.Admin.Controllers
 {
@@ -24,31 +25,30 @@ namespace SeBookWeb.Areas.Admin.Controllers
         //GET
         public IActionResult Upsert(int? id)
         {
-            Product product = new Product();
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
-                u => new SelectListItem
+            ProductVM productVM = new()
+            {
+                Product = new(),
+                CategoryList = _unitOfWork.Category.GetAll().Select(i => new SelectListItem
                 {
-                    Text = u.Name,
-                    Value = id.ToString()
-                });
-            IEnumerable<SelectListItem> CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
-                u => new SelectListItem
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }),
+                CoverTypeList = _unitOfWork.CoverType.GetAll().Select(i => new SelectListItem
                 {
-                    Text = u.Name,
-                    Value = id.ToString()
-                });
-
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }),
+            };
             if (id == null || id == 0)
             {
-                ViewBag.CategoryList = CategoryList;
-                ViewData["CoverTypeList"] = CoverTypeList;
-                return View(product);
+                //ViewBag.CategoryList = CategoryList;
+                //ViewData["CoverTypeList"] = CoverTypeList;
+                return View(productVM);
             }
             else
             {
 
             }
-
             return View();
         }
 

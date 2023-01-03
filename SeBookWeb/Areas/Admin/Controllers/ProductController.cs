@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SeBook.DataAccess;
 using SeBook.DataAccess.Repository.IRepository;
 using SeBook.Models;
@@ -24,6 +25,19 @@ namespace SeBookWeb.Areas.Admin.Controllers
         public IActionResult Upsert(int? id)
         {
             Product product = new Product();
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
+                u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = id.ToString()
+                });
+            IEnumerable<SelectListItem> CoverTypeList = _unitOfWork.CoverType.GetAll().Select(
+                u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = id.ToString()
+                });
+
             if (id == null || id == 0)
             {
                 return View(product);

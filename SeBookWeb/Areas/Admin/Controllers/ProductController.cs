@@ -49,9 +49,10 @@ namespace SeBookWeb.Areas.Admin.Controllers
             }
             else
             {
+                productVM.Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
+                return View(productVM);
 
             }
-            return View();
         }
 
         //POST

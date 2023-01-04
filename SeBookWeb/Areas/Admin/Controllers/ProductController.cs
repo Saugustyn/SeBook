@@ -21,8 +21,7 @@ namespace SeBookWeb.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<CoverType> objCoverTypeList = _unitOfWork.CoverType.GetAll();
-            return View(objCoverTypeList);
+            return View();
         }
 
         //GET
@@ -113,5 +112,14 @@ namespace SeBookWeb.Areas.Admin.Controllers
             TempData["success"] = "CoverType deleted successfully";
             return RedirectToAction("Index");
         }
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var productList = _unitOfWork.Product.GetAll();
+            return Json(new {data=productList});
+        }
+        #endregion
     }
 }

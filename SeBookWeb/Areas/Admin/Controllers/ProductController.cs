@@ -100,41 +100,32 @@ namespace SeBookWeb.Areas.Admin.Controllers
 
         }
 
-        //GET
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            //var category = _db.Find(id);
-            var coverTypeFirst = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id); // if many records: returns the first record
-            //var categorySingle = _db.Categories.SingleOrDefault(u => u.Id == id); //if many records: throws an exception
-
-            if (coverTypeFirst == null)
-            {
-                return NotFound();
-            }
-            return View(coverTypeFirst);
-        }
-
-        //POST
-        [HttpPost]
-        [ValidateAntiForgeryToken] //https://www.devcurry.com/2013/01/what-is-antiforgerytoken-and-why-do-i.html
-        public IActionResult Delete(CoverType obj)
-        {
-            _unitOfWork.CoverType.Remove(obj);
-            _unitOfWork.Save();
-            TempData["success"] = "CoverType deleted successfully";
-            return RedirectToAction("Index");
-        }
-
         #region API CALLS
         [HttpGet]
         public IActionResult GetAll()
         {
             var productList = _unitOfWork.Product.GetAll(includeProperties:"Category,CoverType");
             return Json(new {data=productList});
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var obj = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
+            if(obj == null)
+            {
+                return Json(new { success = false, message = "Error while deleting" });
+            }
+
+            var oldImagePath = Path.Combine(_hostEnvironment.WebRootPath, obj.ImageUrl.TrimStart('\\'));
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+
+            _unitOfWork.Product.Remove(obj);
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "Delete Successful" });
         }
         #endregion
     }

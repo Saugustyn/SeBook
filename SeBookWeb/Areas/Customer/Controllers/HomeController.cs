@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SeBook.DataAccess.Repository.IRepository;
 using SeBook.Models;
+using SeBook.Models.ViewModels;
 using System.Diagnostics;
 
 namespace SeBookWeb.Areas.Customer.Controllers
@@ -22,6 +23,16 @@ namespace SeBookWeb.Areas.Customer.Controllers
         {
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties:"Category,CoverType");
             return View(productList);
+        }
+
+        public IActionResult Details(int id)
+        {
+            ShoppingCart cartObj = new()
+            {
+                Count = 1,
+                Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,CoverType")
+            };
+            return View(cartObj);
         }
 
         public IActionResult Privacy()

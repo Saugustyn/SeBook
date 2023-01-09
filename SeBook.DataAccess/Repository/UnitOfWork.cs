@@ -1,5 +1,6 @@
 ﻿using SeBook.DataAccess.Data;
 using SeBook.DataAccess.Repository.IRepository;
+using SeBook.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,12 @@ namespace SeBook.DataAccess.Repository
             Category = new CategoryRepository(_db);
             CoverType = new CoverTypeRepository(_db);
             Product = new ProductRepository(_db);
+            Company = new CompanyRepository(_db);
         }
         public ICategoryRepository Category { get; private set; }
         public ICoverTypeRepository CoverType { get; private set; }
         public IProductRepository Product { get; private set; }
+        public ICompanyRepository Company { get; private set; }
 
         public void Save()
         {

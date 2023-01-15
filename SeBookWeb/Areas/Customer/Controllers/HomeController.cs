@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SeBook.DataAccess.Repository.IRepository;
 using SeBook.Models;
-using SeBook.Models.ViewModels;
 using System.Diagnostics;
 
 namespace SeBookWeb.Areas.Customer.Controllers

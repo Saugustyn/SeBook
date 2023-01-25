@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SeBook.DataAccess.Repository.IRepository;
 using SeBook.Models;
+using SeBook.Models.ViewModels;
 using SeBook.Utility;
 using System.Security.Claims;
 
@@ -12,6 +13,8 @@ namespace SeBookWeb.Areas.Admin.Controllers
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        [BindProperty]
+        public OrderVM OrderVM { get; set; }
         public OrderController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -20,6 +23,16 @@ namespace SeBookWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Details(int orderId)
+        {
+            OrderVM = new OrderVM()
+            {
+                OrderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == orderId, includeProperties: "ApplicationUser"),
+                OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderId == orderId, includeProperties: "Product"),
+            };
+            return View(OrderVM);
         }
 
         #region API CALLS

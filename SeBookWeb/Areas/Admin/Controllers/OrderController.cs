@@ -4,6 +4,7 @@ using SeBook.Models;
 
 namespace SeBookWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

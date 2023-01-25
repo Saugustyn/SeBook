@@ -63,8 +63,6 @@ namespace SeBookWeb.Areas.Customer.Controllers
             ShoppingCartVM.OrderHeader.State = ShoppingCartVM.OrderHeader.ApplicationUser.State;
             ShoppingCartVM.OrderHeader.PostalCode = ShoppingCartVM.OrderHeader.ApplicationUser.PostalCode;
 
-
-
             foreach (var cart in ShoppingCartVM.ListCart)
             {
                 cart.Price = GetPriceBasedOnQuantity(cart.Count, cart.Product.Price,
@@ -177,10 +175,6 @@ namespace SeBookWeb.Areas.Customer.Controllers
             {
                 return RedirectToAction("OrderConfirmation", "Cart", new { id = ShoppingCartVM.OrderHeader.Id });
             }
-
-            //_unitOfWork.ShoppingCart.RemoveRange(ShoppingCartVM.ListCart);
-            //_unitOfWork.Save();
-            //return RedirectToAction("Index", "Home");
         }
 
         public IActionResult OrderConfirmation(int id)

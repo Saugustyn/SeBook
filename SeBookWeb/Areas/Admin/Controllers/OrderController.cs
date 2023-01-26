@@ -66,8 +66,8 @@ namespace SeBookWeb.Areas.Admin.Controllers
                 {
                     PriceData = new SessionLineItemPriceDataOptions
                     {
-                        UnitAmount = (long)(item.Price * 100),//20.00 -> 2000
-                        Currency = "usd",
+                        UnitAmount = (long)(item.Price * 100),
+                        Currency = "pln",
                         ProductData = new SessionLineItemPriceDataProductDataOptions
                         {
                             Name = item.Product.Title
@@ -86,6 +86,8 @@ namespace SeBookWeb.Areas.Admin.Controllers
             _unitOfWork.Save();
             Response.Headers.Add("Location", session.Url);
             return new StatusCodeResult(303);
+
+
         }
 
         public IActionResult PaymentConfirmation(int orderHeaderid)
@@ -98,7 +100,7 @@ namespace SeBookWeb.Areas.Admin.Controllers
                 //check the stripe status
                 if (session.PaymentStatus.ToLower() == "paid")
                 {
-                    _unitOfWork.OrderHeader.UpdateStatus(orderHeaderid, orderHeader.OrderStatus, SD.PaymentStatusApproved);
+                    _unitOfWork.OrderHeader.UpdateStatus(orderHeaderid, orderHeader.OrderStatus, SD.PaymentStatusApproved, session.PaymentIntentId);
                     _unitOfWork.Save();
                 }
             }
@@ -178,7 +180,7 @@ namespace SeBookWeb.Areas.Admin.Controllers
                 var service = new RefundService();
                 Refund refund = service.Create(options);
 
-                _unitOfWork.OrderHeader.UpdateStatus(orderHeader.Id, SD.StatusCancelled, SD.StatusRefunded);
+                _unitOfWork.OrderHeader.UpdateStatus(orderHeader.Id, SD.StatusCancelled, SD.StatusRefunded, refund.PaymentIntentId);
             }
             else
             {

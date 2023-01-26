@@ -18,7 +18,6 @@ namespace SeBook.DataAccess.Repository
         public Repository(AppDbContext db)
         {
             _db = db;
-            //_db.Products.Include(u => u.Category).Include(u => u.CoverType);
             this.dbSet = _db.Set<T>();
         }
         public void Add(T entity)

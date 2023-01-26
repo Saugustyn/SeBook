@@ -24,7 +24,7 @@ namespace SeBook.DataAccess.Repository
             _db.OrderHeaders.Update(obj);
         }
 
-        public void UpdateStatus(int id, string orderStatus, string? paymentStatus = null)
+        public void UpdateStatus(int id, string orderStatus, string? paymentStatus = null, string? paymentItentId = null)
         {
             var orderFromDb = _db.OrderHeaders.FirstOrDefault(u => u.Id == id);
             if (orderFromDb != null)
@@ -33,6 +33,7 @@ namespace SeBook.DataAccess.Repository
                 if (paymentStatus != null)
                 {
                     orderFromDb.PaymentStatus = paymentStatus;
+                    orderFromDb.PaymentIntentId = paymentItentId;
                 }
             }
         }

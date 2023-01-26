@@ -29,7 +29,6 @@ namespace SeBookWeb.Areas.Admin.Controllers
             return View();
         }
 
-        //POST
         [HttpPost]
         [ValidateAntiForgeryToken] //https://www.devcurry.com/2013/01/what-is-antiforgerytoken-and-why-do-i.html
         public IActionResult Create(Category obj)
@@ -56,9 +55,7 @@ namespace SeBookWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            //var category = _db.Categories.Find(id);
-            var categoryFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id); // if many records: returns the first record
-            //var categorySingle = _db.Categories.SingleOrDefault(u => u.Id == id); //if many records: throws an exception
+            var categoryFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
 
             if (categoryFirst == null)
             {
@@ -94,9 +91,7 @@ namespace SeBookWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            //var category = _db.Find(id);
-            var categoryFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id); // if many records: returns the first record
-            //var categorySingle = _db.Categories.SingleOrDefault(u => u.Id == id); //if many records: throws an exception
+            var categoryFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id); 
 
             if (categoryFirst == null)
             {

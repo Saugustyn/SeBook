@@ -43,18 +43,37 @@ namespace SeBook.DataAccess.Repository
             return querry.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = true)
         {
-            IQueryable<T> querry = dbSet;
-            querry = querry.Where(filter);
-            if (includeProperties != null)
+            if (tracked)
             {
-                foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+
+                IQueryable<T> querry = dbSet;
+                querry = querry.Where(filter);
+                if (includeProperties != null)
                 {
-                    querry = querry.Include(includeProp);
+                    foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        querry = querry.Include(includeProp);
+                    }
                 }
+                return querry.FirstOrDefault(filter);
             }
-            return querry.FirstOrDefault(filter);
+            else
+            {
+                IQueryable<T> query = dbSet.AsNoTracking();
+
+                query = query.Where(filter);
+                if (includeProperties != null)
+                {
+                    foreach (var includeProp in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        query = query.Include(includeProp);
+                    }
+                }
+                return query.FirstOrDefault();
+            }
+            
         }
 
         public void Remove(T entity)

@@ -29,16 +29,24 @@ namespace SeBook.UnitTests
         public void TestDecrementCount()
         {
             var count = 5;
-            var result = _repository.DecrementCount(_shoppingCartTest, count);
-            Assert.Equal(_shoppingCartTest.Count, result);
+            _repository.DecrementCount(_shoppingCartTest, count);
+            Assert.Equal(20, _shoppingCartTest.Count);
         }
 
         [Fact]
         public void TestIncrementCount()
         {
             var count = 5;
-            var result = _repository.IncrementCount(_shoppingCartTest, count);
-            Assert.Equal(_shoppingCartTest.Count, result);
+            _repository.IncrementCount(_shoppingCartTest, count);
+            Assert.Equal(30, _shoppingCartTest.Count);
+        }
+        [Fact]
+        public void TestIncrementCountAfterDecrement()
+        {
+            var count = 5;
+            _repository.DecrementCount(_shoppingCartTest, count);
+            _repository.IncrementCount(_shoppingCartTest, count);
+            Assert.Equal(25, _shoppingCartTest.Count);
         }
     }
 }

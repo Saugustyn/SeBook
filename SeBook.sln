@@ -5,11 +5,13 @@ VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeBookWeb", "SeBookWeb\SeBookWeb.csproj", "{38440011-FF14-4BB7-8C63-02A5B22E4F38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeBook.DataAccess", "SeBook.DataAccess\SeBook.DataAccess.csproj", "{FBA74B49-2FFC-4116-9090-C2BB530B20F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeBook.DataAccess", "SeBook.DataAccess\SeBook.DataAccess.csproj", "{FBA74B49-2FFC-4116-9090-C2BB530B20F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeBook.Models", "SeBook.Models\SeBook.Models.csproj", "{EEE238C7-43DF-4502-B3FB-396C3D9CE306}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeBook.Models", "SeBook.Models\SeBook.Models.csproj", "{EEE238C7-43DF-4502-B3FB-396C3D9CE306}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeBook.Utility", "SeBook.Utility\SeBook.Utility.csproj", "{33845A89-6470-4698-8F3E-B0E0A3ABC05B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeBook.Utility", "SeBook.Utility\SeBook.Utility.csproj", "{33845A89-6470-4698-8F3E-B0E0A3ABC05B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeBook.API", "SeBook.API\SeBook.API.csproj", "{4EFE55CB-003C-4990-9D0F-043E93DFDFE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{33845A89-6470-4698-8F3E-B0E0A3ABC05B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33845A89-6470-4698-8F3E-B0E0A3ABC05B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33845A89-6470-4698-8F3E-B0E0A3ABC05B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EFE55CB-003C-4990-9D0F-043E93DFDFE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EFE55CB-003C-4990-9D0F-043E93DFDFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EFE55CB-003C-4990-9D0F-043E93DFDFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EFE55CB-003C-4990-9D0F-043E93DFDFE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

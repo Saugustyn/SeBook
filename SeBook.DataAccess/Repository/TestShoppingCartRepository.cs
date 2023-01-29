@@ -1,4 +1,5 @@
-﻿using SeBook.DataAccess.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SeBook.DataAccess.Data;
 using SeBook.DataAccess.Repository.IRepository;
 using SeBook.Models;
 using System;
@@ -12,10 +13,10 @@ namespace SeBook.DataAccess.Repository
 {
     public class TestShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRepository
     {
-        private readonly List<ShoppingCart> _shoppingCarts;
-        public TestShoppingCartRepository(AppDbContext db) : base(db)
+        private readonly AppDbContext _db;
+        public TestShoppingCartRepository(DbContextOptions<AppDbContext> options) : base(new AppDbContext(options))
         {
-            _shoppingCarts = new List<ShoppingCart>();
+            _db = new AppDbContext(options);
         }
         public int DecrementCount(ShoppingCart shoppingCart, int count)
         {

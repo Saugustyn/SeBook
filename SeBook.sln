@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeBook.Utility", "SeBook.Ut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeBook.API", "SeBook.API\SeBook.API.csproj", "{4EFE55CB-003C-4990-9D0F-043E93DFDFE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeBook.UnitTests", "SeBook.UnitTests\SeBook.UnitTests.csproj", "{992331A5-634E-4525-B75F-23063F888DC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4EFE55CB-003C-4990-9D0F-043E93DFDFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EFE55CB-003C-4990-9D0F-043E93DFDFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EFE55CB-003C-4990-9D0F-043E93DFDFE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{992331A5-634E-4525-B75F-23063F888DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{992331A5-634E-4525-B75F-23063F888DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{992331A5-634E-4525-B75F-23063F888DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{992331A5-634E-4525-B75F-23063F888DC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

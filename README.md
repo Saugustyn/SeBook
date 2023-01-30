@@ -1,4 +1,4 @@
-# Setup
+# 1.Setup
 
 * 1.Clone the repository to your local machine
 * 2.Open the solution in Visual Studio
@@ -10,3 +10,22 @@ update-database
 ``` 
 to apply any pending migrations and update the database
 * 6.Build and run the application
+
+# 2.Login and payment data:
+### Admin
+admin@gmail.com <br />
+Admin123*
+
+### Company User 
+company@gmail.com <br />
+Company123*
+
+### Employee
+emp@gmail.com <br />
+Emp123**
+
+### Payment card data:
+test@gmail.com <br />
+4242 4242 4242 4242 <br />
+01 / 45 <br />
+444
